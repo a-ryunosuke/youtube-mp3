@@ -12,7 +12,7 @@ import { ErrorList } from "./components/ErrorList";
 import { ConvertHistory } from "./components/ConvertHistory";
 
 import { app } from "./tv/app.tv"
-import { InputFormRhf } from "./components/form/InputFormRhf ";
+import { Form } from "./components/form/InputForm";
 
 export default function App() {
   const [displayColor, setDisplayColor] = useState<boolean>(false)
@@ -71,7 +71,7 @@ export default function App() {
           <ConvertHistory converting={converting} formValue={formValue} />
         </div>
         <br />
-        <InputFormRhf />
+        <Form />
       </div>
     </DisplayColorContext.Provider>
   );
