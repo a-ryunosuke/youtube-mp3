@@ -36,6 +36,7 @@ export default function App() {
       <div className={base()}>
         <div className={frame()}>
           <DisplayMode />
+          <Form />
           <InputForm
           formType="youtubeUrl"
           handleChange={handleChange}
@@ -70,8 +71,6 @@ export default function App() {
           <ErrorList error={error} />
           <ConvertHistory converting={converting} formValue={formValue} />
         </div>
-        <br />
-        <Form />
       </div>
     </DisplayColorContext.Provider>
   );

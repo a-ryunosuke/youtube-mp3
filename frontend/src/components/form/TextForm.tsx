@@ -19,14 +19,19 @@ export const TextForm = <T extends FieldValues>({formType, errors, register} : P
     })
     return (
         <div className={base()}>
-            <label className={label()} htmlFor={formType}>{formType}</label>
+            <label
+            className={label()}
+            htmlFor={formType}>
+                {formType}
+            </label>
             <input
-            className={input()}
             type="text"
             id={formType}
             {...register(formType)}
             // 通常はリンク入力例ーエラー時エラー表示
-            placeholder={errors[formType]?.message as string} />
+            placeholder={errors[formType]?.message as string} 
+            className={input()}
+            />
             {/* {errors[formType] && <p>{errors[formType]?.message as string}</p>} */}
         </div>
     )

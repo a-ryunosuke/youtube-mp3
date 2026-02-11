@@ -5,8 +5,8 @@ import type { ContactFormValues } from "../../utils/schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { audioDownloadApi } from "../../api/audioDownloadApi"
 import { InputText } from "./InputText"
-import { FormResetRhf } from "../FormResetRhf "
-import { InputFormButon } from "./InputFormButton."
+import { FormResetRhf } from "./FormResetButton"
+import { InputFormButton } from "./InputFormButton."
 
 export const Form = () => {
     const [submitStates, setSubmitStates] = useState<
@@ -74,7 +74,7 @@ export const Form = () => {
             <InputText formType="fileName" errors={errors} register={register} />
             <InputText formType="artist" errors={errors} register={register} />
             <InputText formType="comment" errors={errors} register={register} />
-            <InputFormButon submitStates={submitStates} />
+            <InputFormButton submitStates={submitStates} />
             <FormResetRhf reset={reset} />
         </form>
     )
