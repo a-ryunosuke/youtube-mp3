@@ -2,7 +2,7 @@ import type { UseFormRegister, FieldErrors, FieldValues, Path  } from "react-hoo
 // 型だけを使う場合は import type を用いる
 
 import { DisplayColorContext } from "../../context/DisplayColorContext"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { textForm } from "../../tv/components/form/textForm"
 
 type Props<T extends FieldValues> = {
@@ -17,6 +17,10 @@ export const TextForm = <T extends FieldValues>({formType, errors, register} : P
     const { base, label, input } = textForm({
         color: displayColor ? "light" : "dark"
     })
+    
+    useEffect(() => {
+        console.log("a")
+    },[])
     return (
         <div className={base()}>
             <label

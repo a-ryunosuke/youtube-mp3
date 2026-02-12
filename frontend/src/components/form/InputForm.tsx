@@ -4,7 +4,7 @@ import { schema  } from "../../utils/schema"
 import type { ContactFormValues } from "../../utils/schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { audioDownloadApi } from "../../api/audioDownloadApi"
-import { InputText } from "./InputText"
+import { TextForm } from "./TextForm"
 import { FormResetRhf } from "./FormResetButton"
 import { InputFormButton } from "./InputFormButton."
 
@@ -70,10 +70,10 @@ export const Form = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <InputText formType="youtubeUrl" errors={errors} register={register} />
-            <InputText formType="fileName" errors={errors} register={register} />
-            <InputText formType="artist" errors={errors} register={register} />
-            <InputText formType="comment" errors={errors} register={register} />
+            <TextForm formType="youtubeUrl" errors={errors} register={register} />
+            <TextForm formType="fileName" errors={errors} register={register} />
+            <TextForm formType="artist" errors={errors} register={register} />
+            <TextForm formType="comment" errors={errors} register={register} />
             <InputFormButton submitStates={submitStates} />
             <FormResetRhf reset={reset} />
         </form>
