@@ -15,7 +15,7 @@ export const InputFormButton = ({ submitStates }: Props) => {
     
     return (
         <button className={convertButton()} disabled={submitStates === "submitting"}>
-            {submitStates === "submitting" ? "送信中" : "送信する"}
+            {submitStates === "submitting" ? "送信中" : "送信"}
         </button>
     )
 }

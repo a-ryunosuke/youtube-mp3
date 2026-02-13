@@ -4,7 +4,8 @@ export const textForm = tv({
     slots: {
         "base": "p-1",
         "label": "text-lg",
-        "input": "flex items-center justify-center border-2 rounded-xl outline-none focus:shadow-xl duration-1000"
+        "input": "flex items-center justify-center border-2 rounded-xl outline-none focus:shadow-xl duration-1000",
+        "error": "flex justify-end text-red-600 text-sm min-h-[1.25rem] leading-tight",
     },
 
     variants: {

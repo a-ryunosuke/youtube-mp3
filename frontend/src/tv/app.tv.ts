@@ -3,7 +3,7 @@ import { tv } from "tailwind-variants"
 export const app = tv({
   slots: {
     base: "flex flex-col justify-center items-center h-screen transition-colors",
-    frame: "p-10 flex flex-col justify-center items-center transition-colors duration-1000 rounded-xl",
+    frame: "p-15 flex flex-col justify-center items-center transition-colors duration-1000 rounded-xl",
     button: "flex items-center"
   },
   variants: {

@@ -7,14 +7,15 @@ import { textForm } from "../../tv/components/form/textForm"
 
 type Props<T extends FieldValues> = {
     // <T> 型ジェネリクスー引数の型を参照し受け取った型に応じて型安全にする
+    placeholder: string
     formType: Path<T>
     errors: FieldErrors<T>
     register: UseFormRegister<T>;
 }
 
-export const TextForm = <T extends FieldValues>({formType, errors, register} : Props<T>) => {
+export const TextForm = <T extends FieldValues>({formType, errors, placeholder, register} : Props<T>) => {
     const { displayColor } = useContext(DisplayColorContext)
-    const { base, label, input } = textForm({
+    const { base, label, input, error } = textForm({
         color: displayColor ? "light" : "dark"
     })
     
@@ -25,7 +26,7 @@ export const TextForm = <T extends FieldValues>({formType, errors, register} : P
         <div className={base()}>
             <label
             className={label()}
-            htmlFor={formType}>
+            htmlFor={`${formType}入力してください`}>
                 {formType}
             </label>
             <input
@@ -33,10 +34,12 @@ export const TextForm = <T extends FieldValues>({formType, errors, register} : P
             id={formType}
             {...register(formType)}
             // 通常はリンク入力例ーエラー時エラー表示
-            placeholder={errors[formType]?.message as string} 
+            placeholder={placeholder}
             className={input()}
             />
-            {/* {errors[formType] && <p>{errors[formType]?.message as string}</p>} */}
+            <div className={error()}>
+                {errors[formType] && <p>{errors[formType]?.message as string}</p>}
+            </div>
         </div>
     )
 }
