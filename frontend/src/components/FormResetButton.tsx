@@ -1,21 +1,19 @@
 import { useContext } from "react"
 import { DisplayColorContext } from "../context/DisplayColorContext"
-import { button } from "../tv/components/button.tv"
+import { inputFormButton } from "../tv/components/form/inputFormButton"
+
 
 type Props = {
     reset: () => void
 }
 
-export const FormResetButton = ({ reset }: Props) => {
-    const { displayColor } = useContext(DisplayColorContext)
-    const { resetButton } = button({
-        color: displayColor ? "light" : "dark"
+export const FormResetRhf = ({ reset }: Props) => {
+    const{ displayColor } = useContext(DisplayColorContext)
+    const { resetButton } = inputFormButton({
+        color: displayColor ? "light" : "dark",
     })
     
-    const formTextReset = () => {
-        reset()
-    }
     return (
-        <button className={resetButton()} onClick={formTextReset}>RST</button>
+        <button className={resetButton()} onClick={() => reset()}>RESET</button>
     )
 }
