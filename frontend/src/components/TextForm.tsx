@@ -1,9 +1,9 @@
 import type { UseFormRegister, FieldErrors, FieldValues, Path  } from "react-hook-form"
 // 型だけを使う場合は import type を用いる
 
-import { DisplayColorContext } from "../../context/DisplayColorContext"
+import { DisplayColorContext } from "../context/DisplayColorContext"
 import { useContext, useEffect } from "react"
-import { textForm } from "../../tv/components/form/textForm"
+import { textForm } from "../tv/components/textForm.tv"
 
 type Props<T extends FieldValues> = {
     // <T> 型ジェネリクスー引数の型を参照し受け取った型に応じて型安全にする
