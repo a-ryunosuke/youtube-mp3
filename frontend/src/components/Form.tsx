@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+
+import { callApi } from "../utils/callApi"
 import { schema  } from "../utils/schema"
 import type { ContactFormValues } from "../utils/schema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { audioDownloadApi } from "../api/audioDownloadApi"
 import { TextForm } from "./TextForm"
 import { FormResetRhf } from "./FormResetButton"
 import { InputFormButton } from "./InputFormButton."
@@ -34,8 +35,8 @@ export const Form = () => {
         const deleteText = getValues()
 
         try {
+            await callApi(data)
             setSubmitStates("success")
-            callApi(data)
             reset({
                 ...deleteText,
                 youtubeUrl: "",
@@ -43,32 +44,6 @@ export const Form = () => {
             })
         } catch (error) {
             setSubmitStates("error")
-        }
-    }
-
-    const callApi = async ( data: ContactFormValues) => {
-        const { youtubeUrl, fileName, artist, comment } = data
-        
-        try {
-            const blob = await audioDownloadApi({
-                youtubeUrl,
-                fileName,
-                title: fileName,   // ← title に fileName を入れるのは意図的？
-                artist,
-                comment
-            });
-    
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `${fileName || "audio"}.mp3`;  // null/空対策
-            document.body.appendChild(a);               // ← これがないとSafariなどで動かないことがある
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        } catch (err) {
-            console.error("ダウンロード失敗", err);
-            throw err;  // 上位でエラー処理したい場合は
         }
     }
 
