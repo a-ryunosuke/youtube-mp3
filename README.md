@@ -96,6 +96,8 @@ RESETボタンを押下するとフォームに入力された全テキストを
 
 tailwind-cssではなくtailwind-variantsを選択した理由も同様です
 
+＊完全個人利用目的での制作につき、backend/app.pyのコードを削除
+
 <p align="right">(<a href="#top">トップへ</a>)</p>
 
 ## ディレクトリ構成
