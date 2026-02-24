@@ -17,6 +17,7 @@ export const Form = () => {
         register,
         handleSubmit,
         reset,
+        getValues,
         formState: { errors }
     } = useForm<ContactFormValues>({
         resolver: zodResolver(schema),
@@ -28,15 +29,18 @@ export const Form = () => {
         },
     })
 
-
     const onSubmit = async(data: ContactFormValues) => {
-        console.log(data.artist)
         setSubmitStates("submitting")
+        const deleteText = getValues()
 
         try {
             setSubmitStates("success")
             callApi(data)
-            reset()
+            reset({
+                ...deleteText,
+                youtubeUrl: "",
+                fileName: ""
+            })
         } catch (error) {
             setSubmitStates("error")
         }
@@ -76,7 +80,6 @@ export const Form = () => {
             <TextForm formType="comment" errors={errors} placeholder="comment" register={register} />
             <InputFormButton submitStates={submitStates} />
             <FormResetRhf reset={reset} />
-            {/* <ErrorList errors={errors} /> */}
         </form>
     )
 }
