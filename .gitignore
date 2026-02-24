@@ -27,6 +27,3 @@ dist-ssr
 .venv/
 venv/
 __pycache__/
-
-
-readmePhoto/
