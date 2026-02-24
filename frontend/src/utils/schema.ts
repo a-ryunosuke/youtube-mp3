@@ -21,4 +21,3 @@ export const schema = z.object({
 export type ContactFormValues = z.infer<typeof schema>
 
 // min-最小文字数の指定
-// 
