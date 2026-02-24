@@ -48,6 +48,9 @@ youtubeに投稿された動画の音声をmp3としてpcへダウンロード�
 
 ## ディレクトリ構成
 
+<!-- ディレクトリ構造は上下,,,で囲む -->
+
+```
 .
 ├── backend
 │   └── app.py
@@ -92,20 +95,25 @@ youtubeに投稿された動画の音声をmp3としてpcへダウンロード�
 │   │       └── schema.ts
 │   └── vite.config.ts
 └── README.md
+```
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
 
 ## セットアップ
 
-frontend
+**frontend**
 
+```bash
 npm install
 npm run dev
+```
 
-backend
+**backend**
 
+```bash
 pip install -r requirements.txt
 python app.py
+```
 
 ### 動作確認
 
