@@ -7,7 +7,7 @@ import type { ContactFormValues } from "../utils/schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { TextForm } from "./TextForm"
 import { FormResetRhf } from "./FormResetButton"
-import { InputFormButton } from "./InputFormButton."
+import { InputFormButton } from "./InputFormButton"
 
 export const Form = () => {
     const [submitStates, setSubmitStates] = useState<
@@ -18,7 +18,6 @@ export const Form = () => {
         register,
         handleSubmit,
         reset,
-        getValues,
         formState: { errors }
     } = useForm<ContactFormValues>({
         resolver: zodResolver(schema),
@@ -32,13 +31,11 @@ export const Form = () => {
 
     const onSubmit = async(data: ContactFormValues) => {
         setSubmitStates("submitting")
-        const deleteText = getValues()
 
         try {
             await callApi(data)
             setSubmitStates("success")
             reset({
-                ...deleteText,
                 youtubeUrl: "",
                 fileName: ""
             })
