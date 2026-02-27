@@ -37,7 +37,7 @@ MP3変換機能を搭載したサイトは数多く存在していますが、�
 主な機能は、MP3変換機能、バリデート機能、フォーム一括リセット機能、テーマカラー変更機能
 
 ## GIF
-<img src="./readmePhoto/デモGIF.gif"
+<img src="./readmePhoto/デモGIF.gif">
 
 
 ・MP3変換機能  
