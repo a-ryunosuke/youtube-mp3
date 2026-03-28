@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { useAuth } from "../context/AuthContext"
 
 import { callApi } from "../utils/callApi"
 import { schema  } from "../utils/schema"
@@ -13,6 +14,7 @@ export const Form = () => {
     const [submitStates, setSubmitStates] = useState<
     "idle" | "submitting" | "success" | "error"
     >("idle")
+    const { token } = useAuth();
  
     const {
         register,
@@ -31,9 +33,8 @@ export const Form = () => {
 
     const onSubmit = async(data: ContactFormValues) => {
         setSubmitStates("submitting")
-
         try {
-            await callApi(data)
+            await callApi(data, token)
             setSubmitStates("success")
             reset({
                 youtubeUrl: "",
