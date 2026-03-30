@@ -22,9 +22,9 @@ dist-ssr
 *.sw?
 *.json
 *.py
-*.env
 
 
 .venv/
 venv/
 __pycache__/
+.env
