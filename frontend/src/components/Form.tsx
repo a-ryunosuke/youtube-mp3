@@ -9,12 +9,16 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { TextForm } from "./TextForm"
 import { FormResetRhf } from "./FormResetButton"
 import { InputFormButton } from "./InputFormButton"
+import { HistoryDrawer } from "./HistoryDrawer"
+import { useNavigate } from "react-router-dom"
 
 export const Form = () => {
     const [submitStates, setSubmitStates] = useState<
     "idle" | "submitting" | "success" | "error"
     >("idle")
-    const { token } = useAuth();
+    const { token, isLoggedIn, logout } = useAuth();
+    const navigate = useNavigate();
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
  
     const {
         register,
@@ -45,14 +49,37 @@ export const Form = () => {
         }
     }
 
+    // drawer
+    const handleHistoryClick = () => {
+        if(isLoggedIn) {
+            // 未ログインならログインページ
+            navigate("/login")
+        } else {
+            setIsDrawerOpen(true)
+        }
+    }
+
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <TextForm formType="youtubeUrl" errors={errors} placeholder="https://youtu.be/" register={register} />
-            <TextForm formType="fileName" errors={errors} placeholder="fileName" register={register} />
-            <TextForm formType="artist" errors={errors} placeholder="artist" register={register} />
-            <TextForm formType="comment" errors={errors} placeholder="comment" register={register} />
-            <InputFormButton submitStates={submitStates} />
-            <FormResetRhf reset={reset} />
-        </form>
+        <div>
+            <div className="flex justify-end gap-2 mb-4 w-full">
+                {isLoggedIn ? (
+                    <>
+                    <button onClick={handleHistoryClick}>履歴</button>
+                    <button onClick={logout}>ログアウト</button>
+                    </>
+                ) : (
+                    <button onClick={() => navigate("/login")}>ログイン</button>
+                )}
+            </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <TextForm formType="youtubeUrl" errors={errors} placeholder="https://youtu.be/" register={register} />
+                <TextForm formType="fileName" errors={errors} placeholder="fileName" register={register} />
+                <TextForm formType="artist" errors={errors} placeholder="artist" register={register} />
+                <TextForm formType="comment" errors={errors} placeholder="comment" register={register} />
+                <InputFormButton submitStates={submitStates} />
+                <FormResetRhf reset={reset} />
+            </form>
+            <HistoryDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
+        </div>
     )
 }
