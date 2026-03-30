@@ -38,7 +38,25 @@ export const Form = () => {
     const onSubmit = async (data: ContactFormValues) => {
         setSubmitStates("submitting")
         try {
-            await callApi(data, token)
+            const blob = await callApi(data, token)
+
+            // blobをダウンロードさせる処理
+            // blobから一時的なURLを作成
+            const url = window.URL.createObjectURL(blob)
+            // aタグを作成
+            const a = document.createElement("a")
+            a.href = url
+
+            // ユーザーが入力した値で保存
+            // download属性＝保存時のファイル名指定
+            a.download = `${data.fileName || "audio"}.mp3`;
+            document.body.appendChild(a);
+            // aタグを自動的にクリック→ダウンロード開始
+            a.click();
+            // 使用済みaタグ削除
+            a.remove();
+            window.URL.revokeObjectURL(url);
+
             setSubmitStates("success")
             reset({
                 youtubeUrl: "",
