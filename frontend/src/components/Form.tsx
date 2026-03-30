@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { useAuth } from "../context/AuthContext"
 
 import { callApi } from "../utils/callApi"
-import { schema  } from "../utils/schema"
+import { schema } from "../utils/schema"
 import type { ContactFormValues } from "../utils/schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { TextForm } from "./TextForm"
@@ -14,12 +14,12 @@ import { useNavigate } from "react-router-dom"
 
 export const Form = () => {
     const [submitStates, setSubmitStates] = useState<
-    "idle" | "submitting" | "success" | "error"
+        "idle" | "submitting" | "success" | "error"
     >("idle")
     const { token, isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
- 
+
     const {
         register,
         handleSubmit,
@@ -35,7 +35,7 @@ export const Form = () => {
         },
     })
 
-    const onSubmit = async(data: ContactFormValues) => {
+    const onSubmit = async (data: ContactFormValues) => {
         setSubmitStates("submitting")
         try {
             await callApi(data, token)
@@ -51,7 +51,7 @@ export const Form = () => {
 
     // drawer
     const handleHistoryClick = () => {
-        if(isLoggedIn) {
+        if (!isLoggedIn) {
             // 未ログインならログインページ
             navigate("/login")
         } else {
@@ -64,8 +64,8 @@ export const Form = () => {
             <div className="flex justify-end gap-2 mb-4 w-full">
                 {isLoggedIn ? (
                     <>
-                    <button onClick={handleHistoryClick}>履歴</button>
-                    <button onClick={logout}>ログアウト</button>
+                        <button onClick={handleHistoryClick}>履歴</button>
+                        <button onClick={logout}>ログアウト</button>
                     </>
                 ) : (
                     <button onClick={() => navigate("/login")}>ログイン</button>
