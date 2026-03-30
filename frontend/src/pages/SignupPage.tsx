@@ -14,7 +14,7 @@ export const SignupPage = () => {
     const onSubmit = async (data: FormData) => {
         try {
             // backendのsignupにメールとパスワードをPOST送信
-            const res = await fetch("http//localhost:5000/api/posts/signup", {
+            const res = await fetch("http://localhost:5000/api/posts/signup", {
                 method: "POST",
                 // json方式で送信
                 headers: { "Content-Type": "application/json" },
