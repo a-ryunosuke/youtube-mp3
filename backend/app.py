@@ -40,6 +40,12 @@ def download_audio(url, output_file):
 def set_metadata(file_path, title, artist_name, comment):
     # mutagenを使ってタグを設定
     audio = MP3(file_path, ID3=ID3)
+
+    # タグがない場合、初期化
+    # サーバーエラーで止まらなくなる
+    if audio.tags is None:
+        audio.add_tags()
+
     if title:
         audio.tags.add(TIT2(encoding=3, text=title))
     if artist_name:
@@ -57,7 +63,7 @@ def send_image(filename):
 @app.route('/download', methods=['POST'])
 def download():
     if request.method == "OPTIONS":
-        return "", 20
+        return "", 200
     
     data = request.get_json() or {}
      
