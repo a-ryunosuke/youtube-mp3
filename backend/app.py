@@ -1,3 +1,4 @@
+import uuid
 from flask import Flask, request, send_file, after_this_request, send_from_directory
 import yt_dlp
 from flask_socketio import SocketIO
@@ -22,9 +23,6 @@ def sanitize_filename(filename):
 
 # 変換するファイルの音質設定、ダウンロード
 def download_audio(url, output_file):
-    # ダウンロード開始前に明示的に通知
-    socketio.emit('progress', {'status': 'downloading'})
-
     ydl_opts = {
         'format': 'bestaudio/best',
         'postprocessors': [{
@@ -36,9 +34,6 @@ def download_audio(url, output_file):
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
-
-    # ダウンロード＆変換完了後に再度通知
-    socketio.emit('progress', {'status': 'finished'})
 
 # mp3タグ編集
 def set_metadata(file_path, title, artist_name, comment):
@@ -83,12 +78,20 @@ def download():
     if not youtube_url:
         return "Youtube Url is required", 400
     
+    # youtubeの簡易バリデーション
+    if "youtube.com/" not in youtube_url and "youtu.be/" not in youtube_url:
+        return "Involid Youtube URL"
+    
     # ファイル名整形(sanitaize_filenake)
     sanitized_filename = sanitize_filename(file_name)
 
-    # 一時的にファイル作成
+    # 一時的にファイル作成(UUIDを用いてファイル名を一致)
+    # uuid=128ビットの識別子。理論上重複しない
     temp_dir = tempfile.gettempdir()
-    temp_output = os.path.join(temp_dir, sanitized_filename)
+    # ランダムな文字列を生成
+    unqiue_string = uuid.uuid4().hex
+    # 元のファイル名＋uuidで絶対に被らない
+    temp_output = os.path.join(temp_dir, f"{sanitized_filename}_{unqiue_string}")
 
     # youtubeから音声を取得
     try:
