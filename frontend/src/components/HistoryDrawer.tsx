@@ -32,11 +32,11 @@ export const HistoryDrawer = ({ isOpen, onClose }: Props) => {
     })
 
     useEffect(() => {
-        if(isOpen && token) {
+        if (isOpen && token) {
             fetchHistory(token).then(setHistory).catch(console.error)
         }
     }, [isOpen, token])
-    
+
     return (
         <div>
             <div className={overlay()} onClick={onClose} />
@@ -47,7 +47,8 @@ export const HistoryDrawer = ({ isOpen, onClose }: Props) => {
                 {history.length === 0 ? (
                     <p className="text-sm opacity-60">履歴がありません</p>
                 ) : (
-                    history.map((h) => (
+                    // 双方の変換日時を比較して降順に並び替え
+                    history.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).map((h) => (
                         <div key={h._id} className={item()}>
                             <p className={itemLabel()}>{h.fileName}</p>
                             <p className={itemSub()}>{h.artist ?? "アーティスト不明"}</p>
