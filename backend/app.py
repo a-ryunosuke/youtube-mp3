@@ -117,10 +117,15 @@ def download():
     return_data.seek(0)
 
     # メモリに読み込んだので、即座にサーバー上ファイルを削除(エラーの温床)
+    try:
+        os.remove(final_output_file)
+    
+    except Exception as e:
+        print(f"Error deleting file: {e}")
     return send_file(
         return_data,
         as_attachment=True,
-        dowonload_name=f"{sanitized_filename}.mp3",
+        download_name=f"{sanitized_filename}.mp3",
         mimetype="audio/mpeg"
     )
 
