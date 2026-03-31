@@ -108,17 +108,21 @@ def download():
     # 元のファイル名をMP3タグとして使用、拡張子は消える
     set_metadata(final_output_file, file_name, artist_name, comment)
 
-    # レスポンス送信後ファイル削除
-    @after_this_request
-    def remove_file(response):
-        try:
-            os.remove(final_output_file)
-        except Exception as e:
-            print(f"Error deleting file: {e}")
-        return response
+    # ファイルをバイナルメモリとしてメモリに読み込む
+    return_data = io.BytesIO()
+    with open(final_output_file, "rb") as f:
+        return_data.write(f.read())
 
-    # ダウンロード完了したmp3ファイルを返す
-    return send_file(final_output_file, as_attachment=True)
+    # 読み終わったらメモリ読み取り位置を先頭に戻す
+    return_data.seek(0)
+
+    # メモリに読み込んだので、即座にサーバー上ファイルを削除(エラーの温床)
+    return send_file(
+        return_data,
+        as_attachment=True,
+        dowonload_name=f"{sanitized_filename}.mp3",
+        mimetype="audio/mpeg"
+    )
 
 if __name__ == '__main__':
     socketio.run(app, debug=True, port=5001)
