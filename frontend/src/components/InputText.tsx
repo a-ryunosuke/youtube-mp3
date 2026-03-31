@@ -1,14 +1,7 @@
-import type { UseFormRegister, FieldErrors, FieldValues, Path  } from "react-hook-form"
-// 型だけを使う場合は import type を用いる
+import type { FieldValues } from "react-hook-form"
+import type { BaseFormProps } from "../types/form"
 
-type Props<T extends FieldValues> = {
-    // <T> 型ジェネリクスー引数の型を参照し受け取った型に応じて型安全にする
-    formType: Path<T>
-    errors: FieldErrors<T>
-    register: UseFormRegister<T>;
-}
-
-export const InputText = <T extends FieldValues>({formType, errors, register} : Props<T>) => {
+export const InputText = <T extends FieldValues>({formType, errors, register} : BaseFormProps<T>) => {
     return (
         <div>
             <label htmlFor={formType}>{formType}</label>
