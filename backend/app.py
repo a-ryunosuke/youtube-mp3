@@ -3,6 +3,10 @@ import yt_dlp
 from flask_socketio import SocketIO
 import os
 import tempfile
+# 一時ファイルを被らせない
+import uuid
+# ファイルをメモリに安全に読み込ませる
+import io
 from mutagen.mp3 import MP3
 from mutagen.id3 import ID3, TIT2, TPE1, COMM
 from flask_cors import CORS
