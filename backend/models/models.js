@@ -1,11 +1,13 @@
-const mongoose =  require("mongoose")
+const mongoose = require("mongoose")
 
 const PostSchema = mongoose.Schema({
-    title: { type: String, required: true},
-    content: { type: String, required: true},
+    youtubeUrl: { type: String, required: true },
+    fileName: { type: String, required: true },
+    artist: { type: String },
+    comment: { type: String },
     // ユーザーと履歴を紐ずける
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true},
-    created_at: { type: Date, default: Date.now}
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    created_at: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model("POST", PostSchema);
