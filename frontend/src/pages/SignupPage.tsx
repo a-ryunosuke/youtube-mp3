@@ -35,13 +35,13 @@ export const SignupPage = () => {
             console.log(err)
         }
     }
-    
+
     return (
         <div>
             <h2>サインアップ</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("email")} type="email" placeholder="メールアドレス" />
-                <input {...register("password")} type="password" />
+                <input {...register("password")} type="password" placeholder="パスワード" />
                 <button type="submit">登録</button>
             </form>
             <Link to="/login">ログインはこちら</Link>
