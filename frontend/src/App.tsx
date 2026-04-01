@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { DisplayColorContext } from "./context/DisplayColorContext"
 import { app } from "./tv/app.tv"
 import { DisplayMode } from "./components/DisplayMode";
-import { MainPage } from "./pages/Mainpage";
+import { Header } from "./components/Header";
+import { MainPage } from "./pages/MainPage";
 
 import { AuthProvider } from "./context/AuthContext";
 
@@ -25,6 +26,7 @@ export default function App() {
         {/* ルーティング機能を提供 */}
         <BrowserRouter>
           <div className={base()}>
+            <Header />
             <div className={frame()}>
               <DisplayMode />
               <Routes>
