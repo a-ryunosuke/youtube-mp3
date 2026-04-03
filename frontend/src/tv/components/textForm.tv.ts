@@ -13,12 +13,12 @@ export const textForm = tv({
             "light": {
                 "label": "text-neutral-700",
                 "input": "border-neutral-50 bg-neutral-100 border-solid focus:shadow-red-950/20"
-                
+
             },
-            "dark": {
-                "label": "text-neutral-300",
-                "input": "border-neutral-200 bg-neutral-300 border-solid focus:shadow-neutral-50/20"
-            }
+            // "dark": {
+            //     "label": "text-neutral-300",
+            //     "input": "border-neutral-200 bg-neutral-300 border-solid focus:shadow-neutral-50/20"
+            // }
 
         }
     },

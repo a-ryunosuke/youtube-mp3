@@ -11,10 +11,10 @@ export const errorList = tv({
                 base: "",
                 text: ""
             },
-            dark: {
-                base: "",
-                text: ""
-            }
+            // dark: {
+            //     base: "",
+            //     text: ""
+            // }
         }
     }, defaultVariants: {}
 })

@@ -17,11 +17,11 @@ export const historyDrawer = tv({
         drawer: "bg-neutral-200",
         item: "bg-neutral-50",
       },
-      dark: {
-        overlay: "bg-black/50",
-        drawer: "bg-neutral-800",
-        item: "bg-neutral-700",
-      }
+      // dark: {
+      //   overlay: "bg-black/50",
+      //   drawer: "bg-neutral-800",
+      //   item: "bg-neutral-700",
+      // }
     },
     open: {
       true: {
