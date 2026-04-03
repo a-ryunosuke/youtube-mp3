@@ -40,7 +40,9 @@ export const SignupPage = () => {
         <div>
             <h2>サインアップ</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
+                <label htmlFor="email">メールアドレス</label>
                 <input {...register("email")} type="email" placeholder="メールアドレス" />
+                <label htmlFor="password">パスワード</label>
                 <input {...register("password")} type="password" placeholder="パスワード" />
                 <button type="submit">登録</button>
             </form>

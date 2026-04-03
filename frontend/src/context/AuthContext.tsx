@@ -6,12 +6,13 @@ type AuthContextType = {
     login: (token: string) => void;
     logout: () => void;
     isLoggedIn: boolean
+    isSignupLoginPage: boolean
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthProvider = ({ children }: { children: ReactNode}) => {
-    const[token, setToken] = useState<string | null>(
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+    const [token, setToken] = useState<string | null>(
         // リロードしても維持
         localStorage.getItem("token")
     );
@@ -35,6 +36,6 @@ export const AuthProvider = ({ children }: { children: ReactNode}) => {
 
 export const useAuth = () => {
     const context = useContext(AuthContext);
-    if(!context) throw new Error("useAuth must be used within AuthProvider")
-        return context
+    if (!context) throw new Error("useAuth must be used within AuthProvider")
+    return context
 }

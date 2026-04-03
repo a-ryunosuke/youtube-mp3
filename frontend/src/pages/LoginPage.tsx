@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form"
-import { useAuth } from "../context/AuthContext"
 import { useNavigate, Link } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
+import { useContext } from "react"
+import { DisplayColorContext } from "../context/DisplayColorContext"
+import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
 
 type FormData = {
     email: string;
@@ -12,15 +15,20 @@ export const LoginPage = () => {
     const { login } = useAuth();
     const navigate = useNavigate();
 
-    const onSubmit = async(data: FormData) => {
+    const { displayColor } = useContext(DisplayColorContext)
+    const { base, button, form } = signupLoginPage({
+        color: displayColor ? "light" : "dark",
+    })
+
+    const onSubmit = async (data: FormData) => {
         try {
             const res = await fetch("http://localhost:5000/api/posts/login", {
                 method: "POST",
-                headers: { "Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             })
             const json = await res.json()
-            if(!res.ok) throw new Error(json.message);
+            if (!res.ok) throw new Error(json.message);
 
             // tokenをContextに保存
             login(json.token);
@@ -31,14 +39,16 @@ export const LoginPage = () => {
         }
     }
     return (
-        <div>
-            <h2>ログイン</h2>
+        <div className={base()}>
+            <h2 >ログイン</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("email")} type="email" placeholder="メールアドレス" />
-                <input {...register("password")} type="password" placeholder="パスワード" />
-                <button type="submit">ログイン</button>
+                <label htmlFor="email">メールアドレス</label>
+                <input className={form()} {...register("email")} type="email" placeholder="メールアドレス" />
+                <label htmlFor="password">パスワード</label>
+                <input className={form()} {...register("password")} type="password" placeholder="パスワード" />
+                <button className={button()} type="submit">ログイン</button>
             </form>
-            <Link to="/signup">アカウント作成</Link>
+            <Link to="/signup" className={button()}>アカウント作成</Link>
         </div>
     )
 }
