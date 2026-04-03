@@ -69,10 +69,7 @@ export const MainPage = () => {
         <div>
             <div className="flex justify-end gap-2 mb-4 w-full">
                 {isLoggedIn ? (
-                    <>
-                        <button onClick={handleHistoryClick}>履歴</button>
-                        <button onClick={logout}>ログアウト</button>
-                    </>
+                    <button onClick={handleHistoryClick}>履歴</button>
                 ) : (
                     <></>
                 )}
