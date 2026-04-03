@@ -19,7 +19,7 @@ export const MainPage = () => {
     const [submitStates, setSubmitStates] = useState<
         "idle" | "submitting" | "success" | "error"
     >("idle")
-    const { token, isLoggedIn, logout } = useAuth();
+    const { token, isLoggedIn } = useAuth();
     const navigate = useNavigate();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
