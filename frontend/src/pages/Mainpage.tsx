@@ -74,7 +74,7 @@ export const MainPage = () => {
                         <button onClick={logout}>ログアウト</button>
                     </>
                 ) : (
-                    <button onClick={() => navigate("/login")}>ログイン</button>
+                    <></>
                 )}
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
