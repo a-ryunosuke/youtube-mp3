@@ -14,9 +14,9 @@ export const Header = () => {
             <h1 className={text()}><Link to="/">MP3 Converter</Link></h1>
             <div>
                 {isLoggedIn ? (
-                    <button onClick={logout} className={button()}>ログアウト</button>
+                    <button onClick={logout} className={button()}>Log Out</button>
                 ) : (
-                    <Link to="/login" className={button() + text()}>ログイン</Link>
+                    <Link to="/login" className={button()}>Log In</Link>
                 )}
             </div>
         </div>

@@ -6,7 +6,6 @@ type AuthContextType = {
     login: (token: string) => void;
     logout: () => void;
     isLoggedIn: boolean
-    isSignupLoginPage: boolean
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
