@@ -8,12 +8,12 @@ type Props = {
 }
 
 export const FormResetRhf = ({ reset }: Props) => {
-    const{ displayColor } = useContext(DisplayColorContext)
+    const { displayColor } = useContext(DisplayColorContext)
     const { resetButton } = inputFormButton({
         color: displayColor ? "light" : "dark",
     })
-    
+
     return (
-        <button className={resetButton()} onClick={() => reset()}>RESET</button>
+        <button className={resetButton()} onClick={() => reset()}>Reset</button>
     )
 }

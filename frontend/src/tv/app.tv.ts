@@ -2,15 +2,15 @@ import { tv } from "tailwind-variants"
 
 export const app = tv({
   slots: {
-    base: " h-screen w-full",
+    base: "min-h-screen w-full transition-colors duration-300",
   },
   variants: {
     color: {
       light: {
-        base: "bg-red-100"
+        base: "bg-gray-50"
       },
       dark: {
-        base: ""
+        base: "bg-gray-950"
       }
     },
   }
