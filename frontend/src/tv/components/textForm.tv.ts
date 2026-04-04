@@ -12,12 +12,12 @@ export const textForm = tv({
         color: {
             "light": {
                 "label": "text-neutral-700",
-                "input": "border-neutral-500 bg-neutral-100 focus:shadow-red-950/20"
+                "input": "border-neutral-500 focus:shadow-red-950/20"
 
             },
             "dark": {
                 "label": "",
-                "input": "border-neutral-200 bg-neutral-300 focus:shadow-neutral-50/20"
+                "input": "border-neutral-200 focus:shadow-neutral-50/20"
             }
 
         }
