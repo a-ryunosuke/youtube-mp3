@@ -12,10 +12,10 @@ export const displayMode = tv({
                 wrapper: "bg-neutral-100",
                 knob: "bg-neutral-500 left-1 hover:left-0"
             },
-            // dark: {
-            //     wrapper: "bg-neutral-500",
-            //     knob: "bg-neutral-600 left-8 hover:left-8.5"
-            // }
+            dark: {
+                wrapper: "bg-neutral-500",
+                knob: "bg-neutral-600 left-8 hover:left-8.5"
+            }
         }
     }
 })

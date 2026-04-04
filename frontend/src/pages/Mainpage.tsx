@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useNavigate } from "react-router-dom"
 
 import { useAuth } from "../context/AuthContext"
+import { DisplayColorContext } from "../context/DisplayColorContext"
 
 import { callApi } from "../utils/callApi"
 import { schema } from "../utils/schema"
@@ -15,6 +16,8 @@ import { FormResetRhf } from "../components/FormResetButton"
 import { InputFormButton } from "../components/InputFormButton"
 import { HistoryDrawer } from "../components/HistoryDrawer"
 
+import { mainPage } from "../tv/pages/mainPage.tv"
+
 export const MainPage = () => {
     const [submitStates, setSubmitStates] = useState<
         "idle" | "submitting" | "success" | "error"
@@ -22,6 +25,11 @@ export const MainPage = () => {
     const { token, isLoggedIn } = useAuth();
     const navigate = useNavigate();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+
+    const { displayColor } = useContext(DisplayColorContext)
+    const { base, form } = mainPage({
+        color: displayColor ? "light" : "dark"
+    })
 
     const {
         register,
@@ -66,7 +74,7 @@ export const MainPage = () => {
     }
 
     return (
-        <div>
+        <div className={base()}>
             <div className="flex justify-end gap-2 mb-4 w-full">
                 {isLoggedIn ? (
                     <button onClick={handleHistoryClick}>履歴</button>
@@ -74,14 +82,16 @@ export const MainPage = () => {
                     <></>
                 )}
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <TextForm formType="youtubeUrl" errors={errors} placeholder="https://youtu.be/" register={register} />
-                <TextForm formType="fileName" errors={errors} placeholder="fileName" register={register} />
-                <TextForm formType="artist" errors={errors} placeholder="artist" register={register} />
-                <TextForm formType="comment" errors={errors} placeholder="comment" register={register} />
-                <InputFormButton submitStates={submitStates} />
-                <FormResetRhf reset={reset} />
-            </form>
+            <div className={form()}>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <TextForm formType="youtubeUrl" errors={errors} placeholder="https://youtu.be/" register={register} />
+                    <TextForm formType="fileName" errors={errors} placeholder="fileName" register={register} />
+                    <TextForm formType="artist" errors={errors} placeholder="artist" register={register} />
+                    <TextForm formType="comment" errors={errors} placeholder="comment" register={register} />
+                    <InputFormButton submitStates={submitStates} />
+                    <FormResetRhf reset={reset} />
+                </form>
+            </div>
             <HistoryDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
         </div>
     )

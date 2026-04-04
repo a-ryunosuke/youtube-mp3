@@ -15,7 +15,7 @@ import { SignupPage } from "./pages/SignupPage";
 
 export default function App() {
   const [displayColor, setDisplayColor] = useState<boolean>(false)
-  const { base, frame } = app({
+  const { base } = app({
     color: displayColor ? "light" : "dark"
   })
 
@@ -27,15 +27,13 @@ export default function App() {
         <BrowserRouter>
           <div className={base()}>
             <Header />
-            <div className={frame()}>
-              <DisplayMode />
-              <Routes>
-                {/* 上からの情報を受け取る */}
-                <Route path="/" element={<MainPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<SignupPage />} />
-              </Routes>
-            </div>
+            <DisplayMode />
+            <Routes>
+              {/* 上からの情報を受け取る */}
+              <Route path="/" element={<MainPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
+            </Routes>
           </div>
         </BrowserRouter>
       </AuthProvider>

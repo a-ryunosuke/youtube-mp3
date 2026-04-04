@@ -2,21 +2,18 @@ import { tv } from "tailwind-variants"
 
 export const mainPage = tv({
     slots: {
-        base: "",
-        frame: "",
-        button: ""
+        base: "flex flex-col justify-center items-center mt-1 ml-5 mr-5 rounded-2xl shadow-xl",
+        form: "p-10"
     },
     variants: {
         color: {
             light: {
-                base: "",
-                frame: "",
-                button: ""
+                base: "bg-blue-500/80",
+                form: "",
             },
             dark: {
-                base: "",
-                frame: "",
-                button: ""
+                base: "bg-blue-900",
+                form: "",
             }
         },
     }
