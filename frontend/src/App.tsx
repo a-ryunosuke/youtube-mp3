@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import { DisplayColorContext } from "./context/DisplayColorContext"
 import { app } from "./tv/app.tv"
-import { DisplayMode } from "./components/DisplayMode";
 import { Header } from "./components/Header";
 import { MainPage } from "./pages/MainPage";
 
@@ -14,10 +13,24 @@ import { LoginPage } from "./pages/LoginPage"
 import { SignupPage } from "./pages/SignupPage";
 
 export default function App() {
-  const [displayColor, setDisplayColor] = useState<boolean>(false)
+  // OSの設定(prefers-color-scheme)を監視
+  const [displayColor, setDisplayColor] = useState<boolean>(() => {
+    // OSがダークモード"ではない"場合にtrue(light)
+    return !window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      setDisplayColor(!e.matches);
+    };
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
   const { base } = app({
     color: displayColor ? "light" : "dark"
-  })
+  });
 
   return (
     <DisplayColorContext.Provider value={{ displayColor, setDisplayColor }}>
@@ -27,7 +40,6 @@ export default function App() {
         <BrowserRouter>
           <div className={base()}>
             <Header />
-            <DisplayMode />
             <Routes>
               {/* 上からの情報を受け取る */}
               <Route path="/" element={<MainPage />} />
