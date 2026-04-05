@@ -1,5 +1,11 @@
+import { useContext } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate, Link } from "react-router-dom"
+
+import { DisplayColorContext } from "../context/DisplayColorContext"
+
+import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
+import { textForm } from "../tv/components/textForm.tv"
 
 type FormData = {
     email: string;
@@ -9,6 +15,13 @@ type FormData = {
 export const SignupPage = () => {
     const { register, handleSubmit } = useForm<FormData>();
     const navigate = useNavigate();
+    const { displayColor } = useContext(DisplayColorContext)
+    const { base, button } = signupLoginPage({
+        color: displayColor ? "light" : "dark",
+    })
+    const { label, input, error } = textForm({
+        color: displayColor ? "light" : "dark",
+    })
 
     // この一連の流れは何？非同期なのはわかる
     const onSubmit = async (data: FormData) => {
@@ -37,16 +50,16 @@ export const SignupPage = () => {
     }
 
     return (
-        <div>
+        <div className={base()}>
             <h2>サインアップ</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor="email">メールアドレス</label>
-                <input {...register("email")} type="email" placeholder="メールアドレス" />
-                <label htmlFor="password">パスワード</label>
-                <input {...register("password")} type="password" placeholder="パスワード" />
-                <button type="submit">登録</button>
+            <form className={base()} onSubmit={handleSubmit(onSubmit)}>
+                <label className={label()} htmlFor="email">メールアドレス</label>
+                <input className={input()} {...register("email")} type="email" placeholder="メールアドレス" />
+                <label className={label()} htmlFor="password">パスワード</label>
+                <input className={input()} {...register("password")} type="password" placeholder="パスワード" />
+                <button className={button()} type="submit">登録</button>
+                <Link to="/login" className={button()}>ログインはこちら</Link>
             </form>
-            <Link to="/login">ログインはこちら</Link>
         </div>
     )
 }
