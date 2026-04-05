@@ -16,7 +16,7 @@ export const SignupPage = () => {
     const { register, handleSubmit } = useForm<FormData>();
     const navigate = useNavigate();
     const { displayColor } = useContext(DisplayColorContext)
-    const { base, button } = signupLoginPage({
+    const { base, signupButton, loginButton } = signupLoginPage({
         color: displayColor ? "light" : "dark",
     })
     const { label, input, error } = textForm({
@@ -51,14 +51,14 @@ export const SignupPage = () => {
 
     return (
         <div className={base()}>
-            <h2>サインアップ</h2>
+            <h1>サインアップ</h1>
             <form className={base()} onSubmit={handleSubmit(onSubmit)}>
                 <label className={label()} htmlFor="email">メールアドレス</label>
                 <input className={input()} {...register("email")} type="email" placeholder="メールアドレス" />
                 <label className={label()} htmlFor="password">パスワード</label>
                 <input className={input()} {...register("password")} type="password" placeholder="パスワード" />
-                <button className={button()} type="submit">登録</button>
-                <Link to="/login" className={button()}>ログインはこちら</Link>
+                <button className={signupButton()} type="submit">登録</button>
+                <Link to="/login" className={loginButton()}>ログインはこちら</Link>
             </form>
         </div>
     )
