@@ -1,19 +1,15 @@
+import { useContext } from "react"
 import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { useNavigate, Link } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
-import { useContext } from "react"
 import { DisplayColorContext } from "../context/DisplayColorContext"
 import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
-import { textForm } from "../tv/components/textForm.tv"
 import { mainPage } from "../tv/pages/mainPage.tv"
-
-type FormData = {
-    email: string;
-    password: string;
-}
+import { TextForm } from "../components/TextForm"
+import { signupLoginSchema, type SignupLoginFormValues } from "../utils/schema"
 
 export const LoginPage = () => {
-    const { register, handleSubmit } = useForm<FormData>();
     const { login } = useAuth();
     const navigate = useNavigate();
 
@@ -21,14 +17,23 @@ export const LoginPage = () => {
     const { base, mainButton, subButton } = signupLoginPage({
         color: displayColor ? "light" : "dark",
     })
-    const { label, input, error } = textForm({
-        color: displayColor ? "light" : "dark",
-    })
     const { form } = mainPage({
         color: displayColor ? "light" : "dark",
     })
 
-    const onSubmit = async (data: FormData) => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<SignupLoginFormValues>({
+        resolver: zodResolver(signupLoginSchema),
+        defaultValues: {
+            email: "",
+            password: "",
+        },
+    })
+
+    const onSubmit = async (data: SignupLoginFormValues) => {
         try {
             const res = await fetch("http://localhost:5000/api/posts/login", {
                 method: "POST",
@@ -50,10 +55,8 @@ export const LoginPage = () => {
         <div className={base()}>
             <form className={form()} onSubmit={handleSubmit(onSubmit)}>
                 <h1>ログイン</h1>
-                <label className={label()} htmlFor="email">メールアドレス</label>
-                <input className={input()} {...register("email")} type="email" placeholder="メールアドレス" />
-                <label className={label()} htmlFor="password">パスワード</label>
-                <input className={input()} {...register("password")} type="password" placeholder="パスワード" />
+                <TextForm formType="email" errors={errors} placeholder="メールアドレス" register={register} />
+                <TextForm formType="password" errors={errors} placeholder="パスワード" register={register} />
                 <div>
                     <button className={mainButton()} type="submit">ログイン</button>
                     <Link to="/signup" className={subButton()}>アカウント作成</Link>

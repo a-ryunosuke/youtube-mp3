@@ -20,7 +20,7 @@ export const schema = z.object({
     // .min(1, { message: ""})
 })
 
-export const signupSchema = z.object({
+export const signupLoginSchema = z.object({
     email: z
         .string()
         .min(1, { message: "メールアドレス未入力" })
@@ -32,5 +32,6 @@ export const signupSchema = z.object({
 })
 
 export type ContactFormValues = z.infer<typeof schema>
+export type SignupFormValues = z.infer<typeof signupLoginSchema>
 
 // min-最小文字数の指定

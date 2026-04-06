@@ -1,26 +1,34 @@
 import { useContext } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate, Link } from "react-router-dom"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 import { DisplayColorContext } from "../context/DisplayColorContext"
 
 import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
 import { TextForm } from "../components/TextForm"
-
-type FormData = {
-    email: string;
-    password: string;
-}
+import { signupLoginSchema, type SignupLoginFormValues } from "../utils/schema"
 
 export const SignupPage = () => {
-    const { register, handleSubmit } = useForm<FormData>();
     const navigate = useNavigate();
     const { displayColor } = useContext(DisplayColorContext)
     const { base, form, mainButton, subButton } = signupLoginPage({
         color: displayColor ? "light" : "dark",
     })
 
-    const onSubmit = async (data: FormData) => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<SignupLoginFormValues>({
+        resolver: zodResolver(signupLoginSchema),
+        defaultValues: {
+            email: "",
+            password: "",
+        },
+    })
+
+    const onSubmit = async (data: SignupLoginFormValues) => {
         try {
             // backendのsignupにメールとパスワードをPOST送信
             const res = await fetch("http://localhost:5000/api/posts/signup", {
