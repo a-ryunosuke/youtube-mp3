@@ -5,6 +5,7 @@ import { useContext } from "react"
 import { DisplayColorContext } from "../context/DisplayColorContext"
 import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
 import { textForm } from "../tv/components/textForm.tv"
+import { mainPage } from "../tv/pages/mainPage.tv"
 
 type FormData = {
     email: string;
@@ -17,10 +18,13 @@ export const LoginPage = () => {
     const navigate = useNavigate();
 
     const { displayColor } = useContext(DisplayColorContext)
-    const { base, signupButton, loginButton } = signupLoginPage({
+    const { base, mainButton, subButton } = signupLoginPage({
         color: displayColor ? "light" : "dark",
     })
     const { label, input, error } = textForm({
+        color: displayColor ? "light" : "dark",
+    })
+    const { form } = mainPage({
         color: displayColor ? "light" : "dark",
     })
 
@@ -44,14 +48,16 @@ export const LoginPage = () => {
     }
     return (
         <div className={base()}>
-            <h1>ログイン</h1>
-            <form className={base()} onSubmit={handleSubmit(onSubmit)}>
+            <form className={form()} onSubmit={handleSubmit(onSubmit)}>
+                <h1>ログイン</h1>
                 <label className={label()} htmlFor="email">メールアドレス</label>
                 <input className={input()} {...register("email")} type="email" placeholder="メールアドレス" />
                 <label className={label()} htmlFor="password">パスワード</label>
                 <input className={input()} {...register("password")} type="password" placeholder="パスワード" />
-                <button className={loginButton()} type="submit">ログイン</button>
-                <Link to="/signup" className={signupButton()}>アカウント作成</Link>
+                <div>
+                    <button className={mainButton()} type="submit">ログイン</button>
+                    <Link to="/signup" className={subButton()}>アカウント作成</Link>
+                </div>
             </form>
         </div>
     )

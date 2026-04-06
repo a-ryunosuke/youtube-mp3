@@ -2,19 +2,20 @@ import { tv } from "tailwind-variants"
 
 export const signupLoginPage = tv({
     slots: {
-        base: "flex flex-col justify-center items-center",
-        signupButton: "rounded-xl p-2 m-1",
-        loginButton: "rounded-xl p-2 m-1",
+        base: "flex justify-center items-center flex-col",
+        form: "p-10",
+        mainButton: "rounded-xl p-2 m-1",
+        subButton: "border-b-2 p-2 m-1",
     },
     variants: {
         color: {
             light: {
-                signupButton: "bg-red-500 text-white hover:bg-red-700",
-                loginButton: "bg-red-500 text-white hover:bg-red-700",
+                mainButton: "bg-red-500 text-white hover:bg-red-700",
+                subButton: "text-red-500 border-neutral-500",
             },
             dark: {
-                signupButton: "",
-                loginButton: "",
+                mainButton: "",
+                subButton: "",
             }
         },
     }

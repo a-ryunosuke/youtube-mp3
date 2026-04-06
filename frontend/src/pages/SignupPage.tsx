@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom"
 import { DisplayColorContext } from "../context/DisplayColorContext"
 
 import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
-import { textForm } from "../tv/components/textForm.tv"
+import { TextForm } from "../components/TextForm"
 
 type FormData = {
     email: string;
@@ -16,14 +16,10 @@ export const SignupPage = () => {
     const { register, handleSubmit } = useForm<FormData>();
     const navigate = useNavigate();
     const { displayColor } = useContext(DisplayColorContext)
-    const { base, signupButton, loginButton } = signupLoginPage({
-        color: displayColor ? "light" : "dark",
-    })
-    const { label, input, error } = textForm({
+    const { base, form, mainButton, subButton } = signupLoginPage({
         color: displayColor ? "light" : "dark",
     })
 
-    // この一連の流れは何？非同期なのはわかる
     const onSubmit = async (data: FormData) => {
         try {
             // backendのsignupにメールとパスワードをPOST送信
@@ -51,14 +47,14 @@ export const SignupPage = () => {
 
     return (
         <div className={base()}>
-            <h1>サインアップ</h1>
-            <form className={base()} onSubmit={handleSubmit(onSubmit)}>
-                <label className={label()} htmlFor="email">メールアドレス</label>
-                <input className={input()} {...register("email")} type="email" placeholder="メールアドレス" />
-                <label className={label()} htmlFor="password">パスワード</label>
-                <input className={input()} {...register("password")} type="password" placeholder="パスワード" />
-                <button className={signupButton()} type="submit">登録</button>
-                <Link to="/login" className={loginButton()}>ログインはこちら</Link>
+            <form className={form()} onSubmit={handleSubmit(onSubmit)}>
+                <h1>サインアップ</h1>
+                <TextForm formType="email" errors={errors} placeholder="メールアドレス" register={register} />
+                <TextForm formType="password" errors={errors} placeholder="パスワード" register={register} />
+                <div>
+                    <button className={mainButton()} type="submit">登録</button>
+                    <Link to="/login" className={subButton()}>ログインはこちら</Link>
+                </div>
             </form>
         </div>
     )
