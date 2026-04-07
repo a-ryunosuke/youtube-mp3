@@ -12,7 +12,7 @@ export const inputFormButton = tv({
         color: {
             light: {
                 convertButton: "border-red-400 bg-red-500 hover:bg-red-700 text-neutral-50",
-                resetButton: "border-red-400 bg-neutral-300 hover:bg-red-500 text-neutral-50"
+                resetButton: "border-red-400 bg-neutral-400 hover:bg-red-500 text-neutral-50"
             },
             dark: {
                 convertButton: "border-neutral-950 bg-red-600 hover:bg-red-500 text-neutral-200 shadow-xl shadow-red-500/20",
