@@ -2,7 +2,7 @@ import * as z from "zod"
 
 const youtubeUrlTest = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=|embed\/|v\/|shorts\/)?([a-zA-Z0-9_-]{11})(\?.*)?$/;
 const emailTest = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const passwordTest = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+// const passwordTest = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
 export const schema = z.object({
     youtubeUrl: z
@@ -28,10 +28,10 @@ export const signupLoginSchema = z.object({
     password: z
         .string()
         .min(1, { message: "パスワード未入力" })
-        .regex(passwordTest, { message: "正しいパスワード入力" })
+    // .regex(passwordTest, { message: "正しいパスワード入力" })
 })
 
 export type ContactFormValues = z.infer<typeof schema>
-export type SignupFormValues = z.infer<typeof signupLoginSchema>
+export type SignupLoginFormValues = z.infer<typeof signupLoginSchema>
 
 // min-最小文字数の指定

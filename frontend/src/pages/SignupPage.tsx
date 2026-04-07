@@ -57,7 +57,7 @@ export const SignupPage = () => {
         <div className={base()}>
             <form className={form()} onSubmit={handleSubmit(onSubmit)}>
                 <h1>サインアップ</h1>
-                <TextForm formType="email" errors={errors} placeholder="メールアドレス" register={register} />
+                <TextForm formType="email" errors={errors} placeholder="" register={register} />
                 <TextForm formType="password" errors={errors} placeholder="パスワード" register={register} />
                 <div>
                     <button className={mainButton()} type="submit">登録</button>
