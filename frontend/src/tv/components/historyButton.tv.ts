@@ -2,8 +2,8 @@ import { tv } from "tailwind-variants"
 
 export const historyButton = tv({
     slots: {
-        base: "flex justify-end ml-auto",
-        button: "border-b-2 border-neutral-400 hover:bg-gray-600 text-neutral-400 font-bold py-2 px-4"
+        base: "flex justify-end ml-auto translate-x-[20px]",
+        button: "bg-orange-300 hover:bg-neutral-600 text-white mx-2 p-2 min-w-[70px] rounded-bl-xl"
     },
     variants: {
         color: {
