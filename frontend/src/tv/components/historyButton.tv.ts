@@ -9,11 +9,11 @@ export const historyButton = tv({
         color: {
             light: {
                 base: "",
-                button: "text-gray-50 bg-gray-400 hover:bg-gray-600",
+                button: "text-neutral-50 bg-neutral-400 hover:bg-neutral-600",
             },
             dark: {
                 base: "",
-                button: "text-gray-50 bg-gray-600 hover:bg-gray-500",
+                button: "text-neutral-50 bg-neutral-700 hover:bg-neutral-600",
             }
         }
     }

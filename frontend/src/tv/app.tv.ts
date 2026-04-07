@@ -7,10 +7,10 @@ export const app = tv({
   variants: {
     color: {
       light: {
-        base: "bg-gray-50"
+        base: "bg-neutral-50"
       },
       dark: {
-        base: "bg-gray-900"
+        base: "bg-neutral-900"
       }
     },
   }

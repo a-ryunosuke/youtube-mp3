@@ -15,9 +15,9 @@ export const header = tv({
                 button: "text-gray-50 bg-red-400 border-red-400"
             },
             dark: {
-                base: "bg-gray-800",
-                text: "text-gray-50",
-                button: "text-gray-50 bg-red-500 border-red-500"
+                base: "bg-neutral-800",
+                text: "text-neutral-50",
+                button: "text-neutral-50 bg-red-500 border-red-500"
             }
         }
     }
