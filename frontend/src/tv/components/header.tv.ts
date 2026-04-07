@@ -11,13 +11,13 @@ export const header = tv({
         color: {
             light: {
                 base: "bg-red-500",
-                text: "text-white",
-                button: "text-white bg-red-400 border-red-400"
+                text: "text-gray-50",
+                button: "text-gray-50 bg-red-400 border-red-400"
             },
             dark: {
                 base: "bg-gray-800",
-                text: "",
-                button: ""
+                text: "text-gray-50",
+                button: "text-gray-50 bg-red-500 border-red-500"
             }
         }
     }

@@ -10,7 +10,7 @@ export const app = tv({
         base: "bg-gray-50"
       },
       dark: {
-        base: "bg-gray-950"
+        base: "bg-gray-900"
       }
     },
   }
