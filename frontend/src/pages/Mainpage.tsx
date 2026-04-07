@@ -11,6 +11,7 @@ import { schema } from "../utils/schema"
 import type { ContactFormValues } from "../utils/schema"
 import { downloadFile } from "../utils/downloadFile"
 
+import { HistoryButton } from "../components/HistoryButton"
 import { TextForm } from "../components/TextForm"
 import { FormResetRhf } from "../components/FormResetButton"
 import { InputFormButton } from "../components/InputFormButton"
@@ -75,13 +76,7 @@ export const MainPage = () => {
 
     return (
         <div className={base()}>
-            <div className="flex justify-end gap-2 mb-4 w-full">
-                {isLoggedIn ? (
-                    <button onClick={handleHistoryClick}>履歴</button>
-                ) : (
-                    <></>
-                )}
-            </div>
+            <HistoryButton isLoggedIn={isLoggedIn} handleHistoryClick={handleHistoryClick} />
             <div className={form()}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextForm formType="youtubeUrl" errors={errors} placeholder="https://youtu.be/" register={register} />

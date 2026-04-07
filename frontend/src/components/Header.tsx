@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import { useContext } from "react"
+import { useAuth } from "../context/AuthContext"
 import { DisplayColorContext } from "../context/DisplayColorContext"
 import { header } from "../tv/components/header.tv"
-import { useAuth } from "../context/AuthContext"
 
 export const Header = () => {
     const { isLoggedIn, logout } = useAuth();

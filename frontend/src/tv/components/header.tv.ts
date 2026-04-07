@@ -1,6 +1,7 @@
 import { tv } from "tailwind-variants"
 
 export const header = tv({
+    base: "",
     slots: {
         base: "ml-1 mr-1 p-3 min-h-[50px] rounded-b-xl flex justify-between items-center cursor-pointer",
         text: "",

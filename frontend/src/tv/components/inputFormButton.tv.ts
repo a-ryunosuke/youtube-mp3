@@ -3,7 +3,7 @@ import { tv } from "tailwind-variants"
 const buttonBase = "p-1 m-3 border-2 rounded-xl text-lg min-w-[80px] cursor-pointer"
 
 export const inputFormButton = tv({
-    // base: "p-1 m-1 border-2 rounded-xl",
+    base: "",
     slots: {
         "convertButton": buttonBase,
         "resetButton": buttonBase
