@@ -51,7 +51,7 @@ export const HistoryDrawer = ({ isOpen, onClose }: Props) => {
                     history.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).map((h) => (
                         <div key={h._id} className={item()}>
                             <p className={itemLabel()}>{h.fileName}</p>
-                            <p className={itemSub()}>{h.artist ?? "アーティスト不明"}</p>
+                            <p className={itemSub()}>{h.artist}</p>
                             <p className={itemSub()}>{new Date(h.created_at).toLocaleDateString("ja-JP")}</p>
                         </div>
                     ))

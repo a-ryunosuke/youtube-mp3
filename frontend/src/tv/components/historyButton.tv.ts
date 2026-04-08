@@ -13,7 +13,7 @@ export const historyButton = tv({
             },
             dark: {
                 base: "",
-                button: "text-neutral-50 bg-neutral-700 hover:bg-neutral-600",
+                button: "text-neutral-300 bg-neutral-700 hover:bg-neutral-600",
             }
         }
     }
