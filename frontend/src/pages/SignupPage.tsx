@@ -12,7 +12,7 @@ import { signupLoginSchema, type SignupLoginFormValues } from "../utils/schema"
 export const SignupPage = () => {
     const navigate = useNavigate();
     const { displayColor } = useContext(DisplayColorContext)
-    const { base, form, mainButton, subButton } = signupLoginPage({
+    const { base, form, h1, mainButton, subButton } = signupLoginPage({
         color: displayColor ? "light" : "dark",
     })
 
@@ -56,8 +56,8 @@ export const SignupPage = () => {
     return (
         <div className={base()}>
             <form className={form()} onSubmit={handleSubmit(onSubmit)}>
-                <h1>サインアップ</h1>
-                <TextForm formType="email" errors={errors} placeholder="" register={register} />
+                <h1 className={h1()}>サインアップ</h1>
+                <TextForm formType="email" errors={errors} placeholder="メールアドレス" register={register} />
                 <TextForm formType="password" errors={errors} placeholder="パスワード" register={register} />
                 <div>
                     <button className={mainButton()} type="submit">登録</button>

@@ -5,7 +5,6 @@ import { useNavigate, Link } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import { DisplayColorContext } from "../context/DisplayColorContext"
 import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
-import { mainPage } from "../tv/pages/mainPage.tv"
 import { TextForm } from "../components/TextForm"
 import { signupLoginSchema, type SignupLoginFormValues } from "../utils/schema"
 
@@ -14,10 +13,7 @@ export const LoginPage = () => {
     const navigate = useNavigate();
 
     const { displayColor } = useContext(DisplayColorContext)
-    const { base, mainButton, subButton } = signupLoginPage({
-        color: displayColor ? "light" : "dark",
-    })
-    const { form } = mainPage({
+    const { base, h1, form, mainButton, subButton } = signupLoginPage({
         color: displayColor ? "light" : "dark",
     })
 
@@ -54,7 +50,7 @@ export const LoginPage = () => {
     return (
         <div className={base()}>
             <form className={form()} onSubmit={handleSubmit(onSubmit)}>
-                <h1>ログイン</h1>
+                <h1 className={h1()}>ログイン</h1>
                 <TextForm formType="email" errors={errors} placeholder="メールアドレス" register={register} />
                 <TextForm formType="password" errors={errors} placeholder="パスワード" register={register} />
                 <div>

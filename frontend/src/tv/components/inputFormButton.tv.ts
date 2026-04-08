@@ -16,7 +16,7 @@ export const inputFormButton = tv({
             },
             dark: {
                 convertButton: "bg-red-500 hover:bg-red-400 text-neutral-200",
-                resetButton: "bg-neutral-700 hover:bg-neutral-600 text-neutral-200"
+                resetButton: "bg-neutral-700 hover:bg-neutral-600 text-neutral-400"
             }
         },
         state: {
