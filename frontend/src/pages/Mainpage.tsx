@@ -10,7 +10,7 @@ import { schema } from "../utils/schema"
 import type { ContactFormValues } from "../utils/schema"
 import { downloadFile } from "../utils/downloadFile"
 
-import { TextForm } from "../components/TextForm"
+import { TextForm } from "../components/InputText"
 import { FormResetRhf } from "../components/FormResetButton"
 import { InputFormButton } from "../components/InputFormButton"
 

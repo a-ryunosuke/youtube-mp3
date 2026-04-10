@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { DisplayColorContext } from "../context/DisplayColorContext"
 
 import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
-import { TextForm } from "../components/TextForm"
+import { TextForm } from "../components/InputText"
 import { signupLoginSchema, type SignupLoginFormValues } from "../utils/schema"
 
 export const SignupPage = () => {

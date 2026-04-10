@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { DisplayColorContext } from "../context/DisplayColorContext"
-import { inputFormButton } from "../tv/components/inputFormButton.tv"
+import { inputFormButton } from "../tv/components/inputButton.tv"
 
 type Props = {
     submitStates: string

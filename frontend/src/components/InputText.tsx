@@ -1,16 +1,34 @@
 import type { FieldValues } from "react-hook-form"
 import type { BaseFormProps } from "../types/form"
 
-export const InputText = <T extends FieldValues>({ formType, errors, register }: BaseFormProps<T>) => {
+import { DisplayColorContext } from "../context/DisplayColorContext"
+import { useContext } from "react"
+import { textForm } from "../tv/components/InputText.tv"
+
+export const TextForm = <T extends FieldValues>({ formType, errors, placeholder, register }: BaseFormProps<T>) => {
+    const { displayColor } = useContext(DisplayColorContext)
+    const { base, label, input, error } = textForm({
+        color: displayColor ? "light" : "dark"
+    })
+
     return (
-        <div>
-            <label htmlFor={formType}>{formType}</label>
-            <input type="text"
+        <div className={base()}>
+            <label
+                className={label()}
+                htmlFor={`${formType}入力してください`}>
+                {formType}
+            </label>
+            <input
+                type="text"
                 id={formType}
                 {...register(formType)}
                 // 通常はリンク入力例ーエラー時エラー表示
-                placeholder={errors[formType]?.message as string} />
-            {/* {errors[formType] && <p>{errors[formType]?.message as string}</p>} */}
+                placeholder={placeholder}
+                className={input()}
+            />
+            <div className={error()}>
+                {errors[formType] && <p>{errors[formType]?.message as string}</p>}
+            </div>
         </div>
     )
 }

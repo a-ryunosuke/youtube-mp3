@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import { DisplayColorContext } from "../context/DisplayColorContext"
 import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
-import { TextForm } from "../components/TextForm"
+import { TextForm } from "../components/InputText"
 import { signupLoginSchema, type SignupLoginFormValues } from "../utils/schema"
 
 export const LoginPage = () => {
