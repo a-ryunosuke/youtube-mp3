@@ -1,8 +1,9 @@
+import { useContext } from "react"
 import type { FieldValues } from "react-hook-form"
 import type { BaseFormProps } from "../types/form"
 
 import { DisplayColorContext } from "../context/DisplayColorContext"
-import { useContext } from "react"
+
 import { textForm } from "../tv/components/InputText.tv"
 
 export const TextForm = <T extends FieldValues>({ formType, errors, placeholder, register }: BaseFormProps<T>) => {

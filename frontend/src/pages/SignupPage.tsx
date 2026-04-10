@@ -4,10 +4,11 @@ import { useNavigate, Link } from "react-router-dom"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { DisplayColorContext } from "../context/DisplayColorContext"
+import { signupLoginSchema, type SignupLoginFormValues } from "../utils/schema"
+
+import { TextForm } from "../components/InputText"
 
 import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
-import { TextForm } from "../components/InputText"
-import { signupLoginSchema, type SignupLoginFormValues } from "../utils/schema"
 
 export const SignupPage = () => {
     const navigate = useNavigate();

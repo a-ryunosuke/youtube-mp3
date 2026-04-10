@@ -1,12 +1,15 @@
 import { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
 import { useNavigate, Link } from "react-router-dom"
+import { zodResolver } from "@hookform/resolvers/zod"
+
 import { useAuth } from "../context/AuthContext"
 import { DisplayColorContext } from "../context/DisplayColorContext"
-import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
-import { TextForm } from "../components/InputText"
 import { signupLoginSchema, type SignupLoginFormValues } from "../utils/schema"
+
+import { TextForm } from "../components/InputText"
+
+import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
 
 export const LoginPage = () => {
     const { login } = useAuth();

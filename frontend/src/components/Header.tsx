@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom"
 import { useContext } from "react"
+import { Link } from "react-router-dom"
+
 import { useAuth } from "../context/AuthContext"
 import { DisplayColorContext } from "../context/DisplayColorContext"
+
 import { header } from "../tv/components/header.tv"
 
 export const Header = ({ handleHistoryClick }: { handleHistoryClick: () => void }) => {
