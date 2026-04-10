@@ -9,7 +9,7 @@ export const mainPage = tv({
         color: {
             light: {
                 base: "",
-                form: "",
+                form: "bg-neutral-50 border-neutral-300",
             },
             dark: {
                 base: "",

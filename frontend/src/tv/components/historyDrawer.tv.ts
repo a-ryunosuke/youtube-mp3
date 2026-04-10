@@ -15,6 +15,7 @@ export const historyDrawer = tv({
       light: {
         overlay: "bg-black/20",
         drawer: "bg-neutral-200",
+        item: "bg-neutral-50",
         itemLabel: "text-neutral-900",
         itemSub: "text-neutral-500",
       },

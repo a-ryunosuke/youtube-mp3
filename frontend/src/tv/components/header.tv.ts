@@ -10,9 +10,9 @@ export const header = tv({
     variants: {
         color: {
             light: {
-                base: "bg-red-500",
-                text: "text-gray-50",
-                button: "text-gray-50 bg-red-400 border-red-400"
+                base: "bg-neutral-50 border-neutral-300",
+                text: "text-neutral-900",
+                button: "text-neutral-900 bg-neutral-50 border-neutral-300"
             },
             dark: {
                 base: "bg-neutral-900 border-neutral-800",
