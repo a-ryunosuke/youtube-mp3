@@ -1,0 +1,26 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - node-api
+      - python-api
+
+  node-api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.node
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+
+  python-api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.python
+    ports:
+      - "5001:5001"
