@@ -37,6 +37,25 @@ export const HistoryDrawer = ({ isOpen, onClose }: Props) => {
         }
     }, [isOpen, token])
 
+    const historyDelete = async (id: string) => {
+        try {
+            // urlからパス取得するので、urlにidを埋め込む必要あり
+            const res = await fetch(`http://localhost:5000/api/posts/delete/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                // body: JSON.stringify({ id: h._id })
+            });
+            const json = await res.json();
+
+            if (!res.ok) throw new Error(json.message);
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
         <div>
             <div className={overlay()} onClick={onClose} />
@@ -53,6 +72,7 @@ export const HistoryDrawer = ({ isOpen, onClose }: Props) => {
                             <p className={itemLabel()}>{h.fileName}</p>
                             <p className={itemSub()}>{h.artist}</p>
                             <p className={itemSub()}>{new Date(h.created_at).toLocaleDateString("ja-JP")}</p>
+                            <button onClick={() => historyDelete(h._id)}>❌</button>
                         </div>
                     ))
                 )}

@@ -14,6 +14,9 @@ router.get("/:id", API.fetchPostDetail)
 router.post("/signup", API.signup);
 // ログイン
 router.post("/login", API.login);
+// 履歴削除
+// 対象特定し削除
+router.delete("/delete/:id", authMiddleware, API.deletePost)
 
 // 認証必須
 // 不要との違いはauthMiddlewareを挟むことによってトークンが無効なリクエストを弾く

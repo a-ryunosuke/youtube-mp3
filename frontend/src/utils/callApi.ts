@@ -8,7 +8,8 @@ export async function callApi(
     artist?: string;
     comment?: string;
   },
-  token: string | null  // AuthContextから受け取る
+  // AuthContextから受け取る
+  token: string | null
 ) {
   // Flaskへダウンロードリクエスト
   const res = await fetch(FLASK_URL, {
