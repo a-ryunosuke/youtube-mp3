@@ -24,6 +24,8 @@ router.delete("/delete/:id", authMiddleware, API.deletePost)
 // router.post("req", res, next)
 router.post("/", authMiddleware, API.createPost);
 router.put("/:id", authMiddleware, API.updatePost);
+// コンテンツの削除
+// 対象特定し削除
 router.delete("/:id", authMiddleware, API.deletePost)
 
 module.exports = router;

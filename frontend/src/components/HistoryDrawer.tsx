@@ -40,7 +40,7 @@ export const HistoryDrawer = ({ isOpen, onClose }: Props) => {
     const historyDelete = async (id: string) => {
         try {
             // urlからパス取得するので、urlにidを埋め込む必要あり
-            const res = await fetch(`http://localhost:5000/api/posts/delete/${id}`, {
+            const res = await fetch(`http://localhost:5000/api/posts/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -49,8 +49,8 @@ export const HistoryDrawer = ({ isOpen, onClose }: Props) => {
                 // body: JSON.stringify({ id: h._id })
             });
             const json = await res.json();
-
             if (!res.ok) throw new Error(json.message);
+            fetchHistory(token).then(setHistory).catch(console.error)
         } catch (err) {
             console.log(err)
         }
