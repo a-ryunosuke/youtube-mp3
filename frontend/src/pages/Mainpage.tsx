@@ -1,7 +1,6 @@
 import { useState, useContext } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useNavigate } from "react-router-dom"
 
 import { useAuth } from "../context/AuthContext"
 import { DisplayColorContext } from "../context/DisplayColorContext"
@@ -11,11 +10,9 @@ import { schema } from "../utils/schema"
 import type { ContactFormValues } from "../utils/schema"
 import { downloadFile } from "../utils/downloadFile"
 
-import { HistoryButton } from "../components/HistoryButton"
 import { TextForm } from "../components/TextForm"
 import { FormResetRhf } from "../components/FormResetButton"
 import { InputFormButton } from "../components/InputFormButton"
-import { HistoryDrawer } from "../components/HistoryDrawer"
 
 import { mainPage } from "../tv/pages/mainPage.tv"
 
@@ -23,9 +20,7 @@ export const MainPage = () => {
     const [submitStates, setSubmitStates] = useState<
         "idle" | "submitting" | "success" | "error"
     >("idle")
-    const { token, isLoggedIn } = useAuth();
-    const navigate = useNavigate();
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+    const { token } = useAuth();
 
     const { displayColor } = useContext(DisplayColorContext)
     const { base, form } = mainPage({
@@ -64,19 +59,8 @@ export const MainPage = () => {
         }
     }
 
-    // drawer
-    const handleHistoryClick = () => {
-        if (!isLoggedIn) {
-            // 未ログインならログインページ
-            navigate("/login")
-        } else {
-            setIsDrawerOpen(true)
-        }
-    }
-
     return (
         <div className={base()}>
-            <HistoryButton isLoggedIn={isLoggedIn} handleHistoryClick={handleHistoryClick} />
             <div className={form()}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextForm formType="youtubeUrl" errors={errors} placeholder="https://youtu.be/" register={register} />
@@ -87,7 +71,6 @@ export const MainPage = () => {
                     <FormResetRhf reset={reset} />
                 </form>
             </div>
-            <HistoryDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
         </div>
     )
 }

@@ -5,6 +5,7 @@ import { DisplayColorContext } from "./context/DisplayColorContext"
 import { app } from "./tv/app.tv"
 import { Header } from "./components/Header";
 import { MainPage } from "./pages/MainPage";
+import { HistoryDrawer } from "./components/HistoryDrawer";
 
 import { AuthProvider } from "./context/AuthContext";
 
@@ -13,6 +14,8 @@ import { LoginPage } from "./pages/LoginPage"
 import { SignupPage } from "./pages/SignupPage";
 
 export default function App() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+
   // OSの設定(prefers-color-scheme)を監視
   const [displayColor, setDisplayColor] = useState<boolean>(() => {
     // OSがダークモード"ではない"場合にtrue(light)
@@ -32,6 +35,10 @@ export default function App() {
     color: displayColor ? "light" : "dark"
   });
 
+  const handleHistoryClick = () => {
+    setIsDrawerOpen(true)
+  }
+
   return (
     <DisplayColorContext.Provider value={{ displayColor, setDisplayColor }}>
       <AuthProvider>
@@ -39,13 +46,14 @@ export default function App() {
         {/* ルーティング機能を提供 */}
         <BrowserRouter>
           <div className={base()}>
-            <Header />
+            <Header handleHistoryClick={handleHistoryClick} />
             <Routes>
               {/* 上からの情報を受け取る */}
               <Route path="/" element={<MainPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
             </Routes>
+            <HistoryDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
           </div>
         </BrowserRouter>
       </AuthProvider>

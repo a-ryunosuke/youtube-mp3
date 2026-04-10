@@ -3,9 +3,9 @@ import { tv } from "tailwind-variants"
 export const header = tv({
     base: "",
     slots: {
-        base: "p-3 min-h-[50px] border-b-2 flex justify-between items-center cursor-pointer",
-        text: "",
-        button: "flex justify-center items-center p-1 rounded-xl border-2 min-h-[40px] min-w-[80px] cursor-pointer"
+        base: "min-h-[50px] border-b-2 flex justify-between items-center cursor-pointer",
+        text: "pl-3",
+        button: "flex p-3 justify-center items-center border-l-2 min-h-[40px] min-w-[80px] cursor-pointer"
     },
     variants: {
         color: {
