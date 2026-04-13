@@ -1,36 +1,13 @@
-import { useContext } from "react"
-import { useForm } from "react-hook-form"
-import { useNavigate, Link } from "react-router-dom"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { useNavigate } from "react-router-dom"
 
 import { useAuth } from "../context/AuthContext"
-import { DisplayColorContext } from "../context/DisplayColorContext"
-import { signupLoginSchema, type SignupLoginFormValues } from "../utils/schema"
+import { type SignupLoginFormValues } from "../utils/schema"
 
-import { TextForm } from "../components/InputText"
-
-import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
+import { SignupLogin } from "../components/SignupLogin";
 
 export const LoginPage = () => {
     const { login } = useAuth();
     const navigate = useNavigate();
-
-    const { displayColor } = useContext(DisplayColorContext)
-    const { base, h1, form, mainButton, subButton } = signupLoginPage({
-        color: displayColor ? "light" : "dark",
-    })
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm<SignupLoginFormValues>({
-        resolver: zodResolver(signupLoginSchema),
-        defaultValues: {
-            email: "",
-            password: "",
-        },
-    })
 
     const onSubmit = async (data: SignupLoginFormValues) => {
         try {
@@ -51,16 +28,14 @@ export const LoginPage = () => {
         }
     }
     return (
-        <div className={base()}>
-            <form className={form()} onSubmit={handleSubmit(onSubmit)}>
-                <h1 className={h1()}>ログイン</h1>
-                <TextForm formType="email" errors={errors} placeholder="メールアドレス" register={register} />
-                <TextForm formType="password" errors={errors} placeholder="パスワード" register={register} />
-                <div>
-                    <button className={mainButton()} type="submit">ログイン</button>
-                    <Link to="/signup" className={subButton()}>アカウント作成</Link>
-                </div>
-            </form>
-        </div>
+        <SignupLogin
+            onSubmit={onSubmit}
+            title="ログイン"
+            emailPlaceholder="メールアドレス"
+            passwordPlaceholder="パスワード"
+            mainButtonText="ログイン"
+            subButtonText="アカウント作成"
+            linkTo="/signup"
+        />
     )
 }

@@ -1,33 +1,11 @@
-import { useContext } from "react"
-import { useForm } from "react-hook-form"
-import { useNavigate, Link } from "react-router-dom"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { useNavigate } from "react-router-dom"
 
-import { DisplayColorContext } from "../context/DisplayColorContext"
-import { signupLoginSchema, type SignupLoginFormValues } from "../utils/schema"
+import { type SignupLoginFormValues } from "../utils/schema"
 
-import { TextForm } from "../components/InputText"
-
-import { signupLoginPage } from "../tv/pages/signupLoginPage.tv"
+import { SignupLogin } from "../components/SignupLogin";
 
 export const SignupPage = () => {
     const navigate = useNavigate();
-    const { displayColor } = useContext(DisplayColorContext)
-    const { base, form, h1, mainButton, subButton } = signupLoginPage({
-        color: displayColor ? "light" : "dark",
-    })
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm<SignupLoginFormValues>({
-        resolver: zodResolver(signupLoginSchema),
-        defaultValues: {
-            email: "",
-            password: "",
-        },
-    })
 
     const onSubmit = async (data: SignupLoginFormValues) => {
         try {
@@ -55,16 +33,14 @@ export const SignupPage = () => {
     }
 
     return (
-        <div className={base()}>
-            <form className={form()} onSubmit={handleSubmit(onSubmit)}>
-                <h1 className={h1()}>サインアップ</h1>
-                <TextForm formType="email" errors={errors} placeholder="メールアドレス" register={register} />
-                <TextForm formType="password" errors={errors} placeholder="パスワード" register={register} />
-                <div>
-                    <button className={mainButton()} type="submit">登録</button>
-                    <Link to="/login" className={subButton()}>ログインはこちら</Link>
-                </div>
-            </form>
-        </div>
+        <SignupLogin
+            onSubmit={onSubmit}
+            title="サインアップ"
+            emailPlaceholder="メールアドレス"
+            passwordPlaceholder="パスワード"
+            mainButtonText="登録"
+            subButtonText="ログインはこちら"
+            linkTo="/login"
+        />
     )
 }
