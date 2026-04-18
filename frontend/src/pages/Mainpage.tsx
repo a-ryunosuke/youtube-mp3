@@ -45,7 +45,7 @@ export const MainPage = () => {
     const onSubmit = async (data: ContactFormValues) => {
         setSubmitStates("submitting")
         try {
-            const blob = await callApi(data, token)
+            const blob = await callApi({ payload: data, token })
 
             downloadFile(blob, data.fileName)
 

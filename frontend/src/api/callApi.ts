@@ -2,16 +2,17 @@ import { historyApi } from "./historyApi";
 
 const FLASK_URL = "http://localhost:5001/download";
 
-export async function callApi(
+type Props = {
   payload: {
     youtubeUrl: string;
     fileName: string;
     artist?: string;
     comment?: string;
   },
-  // AuthContextから受け取る
-  token: string | null
-) {
+  token: string | null;
+}
+
+export async function callApi({ payload, token }: Props) {
   // Flaskへダウンロードリクエスト
   const res = await fetch(FLASK_URL, {
     method: "POST",
@@ -21,20 +22,7 @@ export async function callApi(
   if (!res.ok) throw new Error(`Flask error: HTTP ${res.status}`);
 
   // MongoDBに履歴保存
-  historyApi(payload, token);
-
-  // // ダウンロード成功後、MongoDBに履歴保存
-  // if (token) {
-  //   await fetch(MONGO_URL, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       // JWT付与
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     body: JSON.stringify(payload),
-  //   });
-  // }
+  await historyApi({ payload, token });
 
   return res.blob();
 }

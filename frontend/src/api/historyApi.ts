@@ -1,6 +1,16 @@
 const MONGO_URL = "http://localhost:5000/api/posts";
 
-export const historyApi = async (payload: { youtubeUrl: string; fileName: string; artist?: string; comment?: string; }, token: string | null) => {
+type Props = {
+    payload: {
+        youtubeUrl: string;
+        fileName: string;
+        artist?: string;
+        comment?: string;
+    },
+    token: string | null;
+}
+
+export const historyApi = async ({ payload, token }: Props) => {
     if (token) {
         await fetch(MONGO_URL, {
             method: "POST",
