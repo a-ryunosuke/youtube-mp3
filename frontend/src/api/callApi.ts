@@ -1,5 +1,6 @@
+import { historyApi } from "./historyApi";
+
 const FLASK_URL = "http://localhost:5001/download";
-const MONGO_URL = "http://localhost:5000/api/posts";
 
 export async function callApi(
   payload: {
@@ -19,18 +20,21 @@ export async function callApi(
   });
   if (!res.ok) throw new Error(`Flask error: HTTP ${res.status}`);
 
-  // ダウンロード成功後、MongoDBに履歴保存
-  if (token) {
-    await fetch(MONGO_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // JWT付与
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(payload),
-    });
-  }
+  // MongoDBに履歴保存
+  historyApi(payload, token);
+
+  // // ダウンロード成功後、MongoDBに履歴保存
+  // if (token) {
+  //   await fetch(MONGO_URL, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       // JWT付与
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     body: JSON.stringify(payload),
+  //   });
+  // }
 
   return res.blob();
 }

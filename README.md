@@ -80,7 +80,7 @@
 
 ### インフラ・その他
 - **Docker / Docker Compose**
-- **Vite**
+- **Vite**- **モバイル対応**: レスポンシブ設計によりスマホからの操作もスムーズです。
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
 
