@@ -7,7 +7,7 @@ const authMiddleware = require("../controllers/middleware");
 // 全て取得
 // 値が固定="/signup"
 // 値が可変="/:id"
-router.get("/", API.fetchAllPost);
+router.get("/", authMiddleware, API.fetchAllPost);
 // IDを取得
 router.get("/:id", API.fetchPostDetail)
 // サインアップ

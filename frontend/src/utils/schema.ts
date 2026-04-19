@@ -24,7 +24,7 @@ export const signupLoginSchema = z.object({
     email: z
         .string()
         .min(1, { message: "メールアドレス未入力" })
-        .regex(emailTest, { message: "正しいメールアドレス入力" }),
+        .regex(emailTest, { message: "正しいメールアドレスを入力" }),
     password: z
         .string()
         .min(1, { message: "パスワード未入力" })
