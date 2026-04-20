@@ -27,7 +27,17 @@
 
 ### デモ
 <!-- 一連の流れのGIF -->
-<img src="">
+<img src="./readmePhoto/readme.gif">
+
+対応した箇所へテキストを入力
+<img src="./readmePhoto/値入力.png">
+
+変換後、履歴に変換した動画のタイトルが追加
+<img src="./readmePhoto/履歴保存.png">
+
+入力値未入力・不正な値が入力された場合はエラーメッセージが表示
+<img src="./readmePhoto/バリデート.png">
+
 
 - **MP3変換 & タグ挿入**: 入力された情報を元に、ダウンロード後のファイルにタグ情報を書き込みます。
 - **バリデート機能**: React Hook Form + Zod による入力チェック。
@@ -46,14 +56,11 @@
 - **ライトモード**: ライトモード及びダークモード
 
 デバイスの設定に応じて自動で切り替わります。
-  <img src="./readmePhoto/変換前.png" width="45%">
-<!-- ダークモード画像 -->
-  <img src="./readmePhoto/ダークモード.png" width="45%">
-</p>
 
-- **モバイル対応**: レスポンシブ設計によりスマホからの操作もスムーズです。
-<!-- スマホサイズ画像 -->
-<img src="./readmePhoto/iphoneSE.png" width="300px">
+<img src="./readmePhoto/デフォルト.png" width="45%">
+<!-- ダークモード画像 -->
+<img src="./readmePhoto/ダークモード.png" width="45%">
+</p>
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
 
@@ -80,7 +87,7 @@
 
 ### インフラ・その他
 - **Docker / Docker Compose**
-- **Vite**- **モバイル対応**: レスポンシブ設計によりスマホからの操作もスムーズです。
+- **Vite**
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
 
