@@ -75,11 +75,19 @@
 結果、コンポーネントごとに役割を分担したスタイルを作成可能になり、保守性・開発速度が向上しました。
 - **React Router 7**
 - **React Hook Form & Zod** (フォーム管理)
-stateの
+
+
 
 ### バックエンド (Node.js API)
 - **Express 5**
 - **MongoDB / Mongoose**
+
+履歴機能追加にあたって、学んだDBがMongoDBでした。
+MongoDBを他DBと比較すると、利点は型の柔軟さにあり柔軟なテーブル設計が可能です。
+よって今回は既存のコードをあまり弄らず短期間で実装できました。
+ただ他DBに直接触れ比較したわけではありません。
+将来的には様々なDBを学び時と場合に合わせ適切な技術選定を行えるようになりたいです。
+
 - **JWT / Bcrypt** (認証)
 
 ### バックエンド (Python Engine)
@@ -90,6 +98,8 @@ stateの
 
 ### インフラ・その他
 - **Docker / Docker Compose**
+
+2つに分かれたbackとfrontをコマンド一つで起動するために導入しました。
 - **Vite**
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
