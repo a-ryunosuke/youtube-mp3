@@ -1,4 +1,3 @@
-import uuid
 from flask import Flask, request, send_file, after_this_request, send_from_directory
 import yt_dlp
 from flask_socketio import SocketIO
